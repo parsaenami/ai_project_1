@@ -6,6 +6,21 @@ class ClassicSearchAlgorithm(object):
         self.parent_from_goal = {}
         self.memory = 0
 
+    def print_path(self, leaf_node):
+        path = []
+        while leaf_node:
+            path.append(leaf_node)
+            if leaf_node in self.parent:
+                leaf_node = self.parent[leaf_node]
+            else:
+                leaf_node = None
+        self.problem.print_path(list(reversed(path)))
+
+    def tree_print_path(self, path):
+        self.problem.print_path(list(path))
+        for item in path:
+            print(item)
+
     def graph_depth_first_search(self, start_state):
         visited_nodes = []
         nodes_to_expand = [start_state]
@@ -58,3 +73,4 @@ class ClassicSearchAlgorithm(object):
             for state in states:
                 nodes_to_expand.append(state)
                 self.memory = self.memory + 1
+
