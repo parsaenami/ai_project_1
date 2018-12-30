@@ -34,3 +34,4 @@ class ClassicSearchAlgorithm(object):
                     nodes_to_expand.append(state)
                     self.parent[state] = current_state
                     self.memory = self.memory + 1
+
