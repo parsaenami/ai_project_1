@@ -19,8 +19,8 @@ class Graph:
         self.edges = []
 
     def add_edge(self, node1, node2, cost):
-        self.graph[node1].append((node2, cost))
-        self.graph[node2].append((node1, cost))
+        self.graph[node1].append([node2, cost])
+        self.graph[node2].append([node1, cost])
 
 
 class ClassicSearchAlgorithm:
