@@ -287,3 +287,15 @@ class ClassicSearchAlgorithm:
 
         print("No result found in depth " + str(depth))
         return None
+
+    def graph_iterative_deepening_search(self, start_state, depth=0):
+        path = None
+        while path is None:
+            path = self.graph_depth_limited_search(start_state, depth)
+            depth = depth + 1
+
+    def tree_iterative_deepening_search(self, start_state, depth=0):
+        path = None
+        while path is None:
+            path = self.tree_depth_limited_search(start_state, depth)
+            depth = depth + 1
