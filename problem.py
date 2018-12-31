@@ -138,31 +138,38 @@ p = Problem()
 csa = ClassicSearchAlgorithm(p)
 bcsa = BeyondClassicSearchAlgorithm(p)
 
-bcsa.graph_a_star(p.initial_state())  # ok...
 print('-----------------------------------------------------------')
-bcsa.tree_a_star(p.initial_state())  # ok...
+print('             uninformed searching algorithms'.upper())
 print('-----------------------------------------------------------')
-bcsa.tree_greedy_best_first_search(p.initial_state())  # ok
-print('-----------------------------------------------------------')
-bcsa.graph_greedy_best_first_search(p.initial_state())  # ok
+csa.graph_iterative_deepening_search(p.initial_state(), 4)  # ok
 print('-----------------------------------------------------------')
 csa.graph_depth_first_search(p.initial_state())  # ok
 print('-----------------------------------------------------------')
-csa.tree_depth_first_search(p.initial_state())  # ok...
-print('-----------------------------------------------------------')
 csa.graph_breadth_first_search(p.initial_state())  # ok
-print('-----------------------------------------------------------')
-csa.tree_breadth_first_search(p.initial_state())  # meh
 print('-----------------------------------------------------------')
 csa.graph_uniform_cost_search(p.initial_state())  # ok
 print('-----------------------------------------------------------')
-csa.tree_uniform_cost_search(p.initial_state())  # meh
-print('-----------------------------------------------------------')
 csa.graph_depth_limited_search(p.initial_state(), 3)  # ok
+print('-----------------------------------------------------------')
+csa.tree_breadth_first_search(p.initial_state())  # meh
+print('***NOTE: the printed route is the explored path, not the main route')
+print('-----------------------------------------------------------')
+csa.tree_depth_first_search(p.initial_state())  # ok...
+print('-----------------------------------------------------------')
+csa.tree_uniform_cost_search(p.initial_state())  # meh
+print('***NOTE: the printed route is the explored path, not the main route')
+print('-----------------------------------------------------------')
+csa.tree_iterative_deepening_search(p.initial_state(), 6)  # ok
 print('-----------------------------------------------------------')
 csa.tree_depth_limited_search(p.initial_state(), 5)  # ok
 print('-----------------------------------------------------------')
-csa.graph_iterative_deepening_search(p.initial_state(), 3)  # ok
+print('              informed searching algorithms'.upper())
 print('-----------------------------------------------------------')
-csa.tree_iterative_deepening_search(p.initial_state(), 2)  # ok
+bcsa.graph_a_star(p.initial_state())  # ok...
+print('-----------------------------------------------------------')
+bcsa.graph_greedy_best_first_search(p.initial_state())  # ok
+print('-----------------------------------------------------------')
+bcsa.tree_greedy_best_first_search(p.initial_state())  # ok
+print('-----------------------------------------------------------')
+bcsa.tree_a_star(p.initial_state())  # ok...
 print('-----------------------------------------------------------')
