@@ -48,17 +48,6 @@ class ClassicSearchAlgorithm:
         for item in path:
             print(item)
 
-    def print_path_from_goal(self, leaf_node):
-        print("From goal", end=" ")
-        path = []
-        while leaf_node:
-            path.append(leaf_node)
-            if leaf_node in self.parent_from_goal:
-                leaf_node = self.parent_from_goal[leaf_node]
-            else:
-                leaf_node = None
-        self.problem.print_path(list(reversed(path)))
-
     def graph_depth_first_search(self, start_state):
         expanded_nodes_number, visited_nodes_number = 0, 1
         self.open_list.append(start_state)
