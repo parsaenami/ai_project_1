@@ -48,13 +48,17 @@ class Problem:
             neighbors.append(f'go({s[0]})')
         return neighbors
 
-    def results(self, state, action):
-        self.parent_path[state] = action[3:-1]
-        return  action[3:-1]
+    def results(self, action, state):
+        actions = []
+        for a in action:
+            self.parent_path[state] = a[3:-1]
+            actions.append(a[3:-1])
+
+        return actions
 
     def cost(self, state1, action, state2):
         cost_value = -1
-        if action[3:-1] == state2:
+        if f'go({state2})' in action:
             for s in self.romania_map.graph[state1]:
                 if s[0] == state2:
                     cost_value = s[1]
@@ -106,29 +110,41 @@ class Problem:
 
     def print_path(self, path, dfs_bfs=False):
 
-        final_path = ''
-        check = True
-        for p in self.parent_path:
-            if check:
-                while p:
-                    final_path += p
-                    final_path += ' -> '
-                    p = self.parent_path.get(p)
-                check = False
-        print(f'My Examined Path Is: {final_path[:-4]}')
-
-
-        for current_state, next_state in zip(path, path[1:]):
-            print(f'{current_state} -> {next_state} |')
-            return
+        # final_path = ''
+        # check = True
+        # for p in self.parent_path:
+        #     if check:
+        #         while p:
+        #             final_path += p
+        #             final_path += ' -> '
+        #             p = self.parent_path.get(p)
+        #         check = False
+        # print(f'My Examined Path Is: {final_path[:-4]}')
 
         if dfs_bfs:
             cost = list(zip(path, path[1:])).__len__()
-            print(f'\nTotal Cost: {cost}')
+            print(f'Total Cost: {cost}')
+
+        print('The Best Route: ', end="")
+        temp = ''
+        for current_state, next_state in zip(path, path[1:]):
+            temp = next_state
+            print(f'{current_state} -> ', end="")
+        print(temp)
+        return
 
 
 p = Problem()
 csa = ClassicSearchAlgorithm(p)
 bcsa = BeyondClassicSearchAlgorithm(p)
 
-csa.graph_depth_first_search(p.initial_state())
+# csa.graph_depth_first_search(p.initial_state())               #ok
+# csa.tree_depth_first_search(p.initial_state())                #ok...
+# csa.graph_breadth_first_search(p.initial_state())             #ok
+# csa.tree_breadth_first_search(p.initial_state())              #meh
+# csa.graph_uniform_cost_search(p.initial_state())              #ok
+# csa.tree_uniform_cost_search(p.initial_state())               #meh
+# csa.graph_depth_limited_search(p.initial_state(), 3)          #ok
+# csa.tree_depth_limited_search(p.initial_state(), 5)           #ok
+csa.graph_iterative_deepening_search(p.initial_state(), 3)    #ok
+csa.tree_iterative_deepening_search(p.initial_state(), 2)     #ok
