@@ -124,3 +124,28 @@ class ClassicSearchAlgorithm:
                     self.parent[state] = current_state
                     self.memory = self.memory + 1
 
+    def tree_breadth_first_search(self, start_state):
+        path = []
+        nodes_to_expand = [start_state]
+        number_of_expanded_nodes = 0
+
+        while nodes_to_expand:
+            if not nodes_to_expand:
+                print("No result found!")
+                return None
+            current_state = nodes_to_expand.pop(0)
+            path.append(current_state)
+            number_of_expanded_nodes = number_of_expanded_nodes + 1
+            if self.problem.isGoalTest(current_state):
+                print("Algorithm: Tree BFS")
+                print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
+                print("Memory: " + str(self.memory))
+                print("Last State: " + str(current_state))
+                self.tree_print_path(path)
+                return current_state
+            states = self.problem.results(self.problem.actions(current_state), current_state)
+            for state in states:
+                nodes_to_expand.append(state)
+                self.memory = self.memory + 1
+
+
