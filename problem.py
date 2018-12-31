@@ -1,4 +1,4 @@
-import searching_algorithms
+import uninformed_searching_algorithms
 import graph as g
 
 
