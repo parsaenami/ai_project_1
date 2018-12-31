@@ -219,3 +219,39 @@ class ClassicSearchAlgorithm:
                 nodes_to_expand.append((state, path_cost + self.problem.step_cost(current_state[0], state)))
                 self.parent[state] = current_state[0]
                 self.memory = self.memory + 1
+
+    def graph_depth_limited_search(self, start_state, depth):
+        current_depth = 0
+        visited_nodes = []
+        nodes_to_expand = [(start_state, 0)]
+        number_of_visited_nodes = 1
+        number_of_expanded_nodes = 0
+
+        while nodes_to_expand and current_depth <= depth:
+            if not nodes_to_expand:
+                print("No result found!")
+                return None
+            current_state = nodes_to_expand.pop()
+            number_of_expanded_nodes = number_of_expanded_nodes + 1
+            if self.problem.isGoalTest(current_state):
+                print("Algorithm: Graph Depth Limited Search")
+                print("Number Of Visited Nodes: " + str(number_of_visited_nodes))
+                print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
+                print("Depth: " + str(current_depth))
+                print("Memory: " + str(self.memory))
+                print("Last State: " + str(current_state))
+                print("Solution found in Depth " + str(current_depth))
+                self.print_path(current_state)
+                return current_state
+            visited_nodes.append(current_state[0])
+            states = self.problem.results(self.problem.actions(current_state[0]), current_state[0])
+            current_depth = current_depth + 1
+            for state in states:
+                if state not in visited_nodes:
+                    number_of_visited_nodes = number_of_visited_nodes + 1
+                    nodes_to_expand.append(state)
+                    self.parent[state] = current_state
+                    self.memory = self.memory + 1
+
+        print("No result found in depth " + str(depth))
+        return None
