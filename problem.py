@@ -24,4 +24,15 @@ class Problem:
     def heuristic(self, state):
         return  # int
 
+    def print_path(self, path, dfs_bfs=False):
+        def find_direction(current_state, next_state):
+            # todo: write what to print here
+            return
 
+        print("Path:", end=" ")
+        for current_state, next_state in zip(path, path[1:]):
+            find_direction(current_state, next_state)
+
+        if dfs_bfs:
+            cost = list(zip(path, path[1:])).__len__()
+            print(f'\nTotal Cost: {cost}')
