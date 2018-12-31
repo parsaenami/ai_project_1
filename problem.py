@@ -1,6 +1,6 @@
 import graph as g
-import SearchAlgorithms.informed_searching_algorithms
-import SearchAlgorithms.uninformed_searching_algorithms
+from SearchAlgorithms.informed_searching_algorithms import *
+from SearchAlgorithms.uninformed_searching_algorithms import *
 
 
 class Problem:
@@ -105,17 +105,30 @@ class Problem:
             return 'Wrong Input!'
 
     def print_path(self, path, dfs_bfs=False):
-        # todo: write what to print here
 
-        # def find_direction(current_state, next_state):
-        # return
+        final_path = ''
+        check = True
+        for p in self.parent_path:
+            if check:
+                while p:
+                    final_path += p
+                    final_path += ' -> '
+                    p = self.parent_path.get(p)
+                check = False
+        print(f'My Examined Path Is: {final_path[:-4]}')
 
-        print("Path:", end=" ")
+
         for current_state, next_state in zip(path, path[1:]):
-            # todo: write what to print here
-            # find_direction(current_state, next_state)
+            print(f'{current_state} -> {next_state} |')
             return
 
         if dfs_bfs:
             cost = list(zip(path, path[1:])).__len__()
             print(f'\nTotal Cost: {cost}')
+
+
+p = Problem()
+csa = ClassicSearchAlgorithm(p)
+bcsa = BeyondClassicSearchAlgorithm(p)
+
+csa.graph_depth_first_search(p.initial_state())
