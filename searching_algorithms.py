@@ -11,6 +11,7 @@ def find_node_with_minimum_cost_to_expand(nodes):
             min_node = node
     return min_node
 
+
 class Graph:
 
     def __init__(self):
