@@ -22,7 +22,7 @@ class BeyondClassicSearchAlgorithm(object):
         min_node = ()
         for node in nodes:
             if min_cost > self.problem.heuristic(node[0]):
-                min_cost = node[1]
+                min_cost = self.problem.heuristic(node[0])
                 min_node = node
         return min_node
 
@@ -103,12 +103,9 @@ class BeyondClassicSearchAlgorithm(object):
         # for item in path:
         #     print(item)
 
-
-
-
-
     def graph_greedy_best_first_search(self, start_state):
         path_cost = 0
+        path = []
         visited_nodes = []
         number_of_visited_nodes = 1
         number_of_expanded_nodes = 0
@@ -119,17 +116,19 @@ class BeyondClassicSearchAlgorithm(object):
                 print("No result found!")
                 return None
             current_state = self.find_node_with_minimum_cost_to_expand_greedy(nodes_to_expand)
+            path.append(current_state[0])
             number_of_expanded_nodes = number_of_expanded_nodes + 1
             nodes_to_expand.pop(nodes_to_expand.index(current_state))
             path_cost = current_state[1]
             if self.problem.goal_test(current_state[0]):
-                print("Algorithm: Graph Uniform Cost Search")
+                print("Algorithm: Graph GBFS")
                 print("Number Of Visited Nodes: " + str(number_of_visited_nodes))
                 print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
                 print("Cost: " + str(path_cost))
                 print("Memory: " + str(self.memory))
                 print("Last State: " + str(current_state))
-                self.print_path(current_state[0])
+                self.tree_print_path(path)
+                # self.print_path(current_state[0])
                 return current_state[0]
             visited_nodes.append(current_state[0])
             states = self.problem.results(self.problem.actions(current_state[0]), current_state[0])
@@ -163,7 +162,7 @@ class BeyondClassicSearchAlgorithm(object):
             nodes_to_expand.pop(nodes_to_expand.index(current_state))
             path_cost = current_state[1]
             if self.problem.goal_test(current_state[0]):
-                print("Algorithm: Tree Uniform Cost Search")
+                print("Algorithm: Tree GBFS")
                 print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
                 print("Cost: " + str(path_cost))
                 print("Memory: " + str(self.memory))
