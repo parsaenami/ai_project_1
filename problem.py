@@ -1,5 +1,6 @@
-import uninformed_searching_algorithms
 import graph as g
+import SearchAlgorithms.informed_searching_algorithms
+import SearchAlgorithms.uninformed_searching_algorithms
 
 
 class Problem:
@@ -30,6 +31,8 @@ class Problem:
         self.romania_map.add_edge('Oradea', 'Zerind', 71)
         self.romania_map.add_edge('Oradea', 'Sibiu', 151)
 
+        self.parent_path = {}
+
     def initial_state(self):
         return 'Arad'
 
@@ -42,18 +45,19 @@ class Problem:
     def actions(self, state):
         neighbors = []
         for s in self.romania_map.graph[state]:
-            neighbors.append(s[0])
+            neighbors.append(f'go({s[0]})')
         return neighbors
 
     def results(self, state, action):
-        return  # state
+        self.parent_path[state] = action[3:-1]
+        return  action[3:-1]
 
     def cost(self, state1, action, state2):
-        # todo: make sure of it
         cost_value = -1
-        for s in self.romania_map.graph[state1]:
-            if s[0] == state2:
-                cost_value = s[1]
+        if action[3:-1] == state2:
+            for s in self.romania_map.graph[state1]:
+                if s[0] == state2:
+                    cost_value = s[1]
         return cost_value
 
     def heuristic(self, state):
