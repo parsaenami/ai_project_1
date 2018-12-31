@@ -1,4 +1,3 @@
-from collections import defaultdict
 import sys
 
 
@@ -10,18 +9,6 @@ def find_node_with_minimum_cost_to_expand(nodes):
             min_cost = node[1]
             min_node = node
     return min_node
-
-
-class Graph:
-
-    def __init__(self):
-        self.graph = defaultdict(list)
-        self.nodes = []
-        self.edges = []
-
-    def add_edge(self, node1, node2, cost):
-        self.graph[node1].append([node2, cost])
-        self.graph[node2].append([node1, cost])
 
 
 class ClassicSearchAlgorithm:

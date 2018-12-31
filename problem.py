@@ -1,16 +1,44 @@
+import searching_algorithms
+import graph as g
 class Problem:
 
+    def __init__(self):
+        self.graph = g.Graph()
+        self.graph.add_edge('Neamt', 'Iasi', 87)
+        self.graph.add_edge('Iasi', 'Vasuli', 92)
+        self.graph.add_edge('Vasuli', 'Urziceni', 142)
+        self.graph.add_edge('Urziceni', 'Hirsova', 98)
+        self.graph.add_edge('Urziceni', 'Bucharest', 85)
+        self.graph.add_edge('Hirsova', 'Eforie', 86)
+        self.graph.add_edge('Bucharest', 'Giurgiu', 90)
+        self.graph.add_edge('Bucharest', 'Fagaras', 211)
+        self.graph.add_edge('Bucharest', 'Pitesti', 101)
+        self.graph.add_edge('Fagaras', 'Sibiu', 99)
+        self.graph.add_edge('Pitesti', 'Craiova', 138)
+        self.graph.add_edge('Pitesti', 'RimnicuVilcea', 97)
+        self.graph.add_edge('Craiova', 'RimnicuVilcea', 146)
+        self.graph.add_edge('RimnicuVilcea', 'Sibiu', 80)
+        self.graph.add_edge('Dobreta', 'Craiova', 120)
+        self.graph.add_edge('Dobreta', 'Mehadia', 75)
+        self.graph.add_edge('Mehadia', 'Lugoj', 70)
+        self.graph.add_edge('Lugoj', 'Timisoara', 111)
+        self.graph.add_edge('Timisoara', 'Arad', 118)
+        self.graph.add_edge('Arad', 'Sibiu', 140)
+        self.graph.add_edge('Arad', 'Zerind', 75)
+        self.graph.add_edge('Oradea', 'Zerind', 71)
+        self.graph.add_edge('Oradea', 'Sibiu', 151)
+
     def initial_state(self):
-        return
+        return 'Arad'
 
     # def states(self):
     #     return
 
     def goal(self):
-        return
+        return 'Bucharest'
 
     def goal_test(self, state):
-        return  # bool
+        return  state == 'Bucharest'
 
     def actions(self, state):
         return  # list
