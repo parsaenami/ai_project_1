@@ -190,3 +190,32 @@ class ClassicSearchAlgorithm:
                     nodes_to_expand.append((state, path_cost + self.problem.step_cost(current_state[0], state)))
                     self.parent[state] = current_state[0]
                     self.memory = self.memory + 1
+
+    def tree_uniform_cost_search(self, start_state):
+        path = []
+        path_cost = 0
+        number_of_expanded_nodes = 0
+        nodes_to_expand = [(start_state, path_cost)]
+
+        while nodes_to_expand:
+            if not nodes_to_expand:
+                print("No result found!")
+                return None
+            current_state = find_node_with_minimum_cost_to_expand(nodes_to_expand)
+            path.append(current_state[0])
+            number_of_expanded_nodes = number_of_expanded_nodes + 1
+            nodes_to_expand.pop(nodes_to_expand.index(current_state))
+            path_cost = current_state[1]
+            if self.problem.isGoalTest(current_state[0]):
+                print("Algorithm: Tree Uniform Cost Search")
+                print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
+                print("Cost: " + str(path_cost))
+                print("Memory: " + str(self.memory))
+                print("Last State: " + str(current_state))
+                self.tree_print_path(path)
+                return current_state[0]
+            states = self.problem.results(self.problem.actions(current_state[0]), current_state[0])
+            for state in states:
+                nodes_to_expand.append((state, path_cost + self.problem.step_cost(current_state[0], state)))
+                self.parent[state] = current_state[0]
+                self.memory = self.memory + 1
