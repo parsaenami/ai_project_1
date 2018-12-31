@@ -138,6 +138,12 @@ p = Problem()
 csa = ClassicSearchAlgorithm(p)
 bcsa = BeyondClassicSearchAlgorithm(p)
 
+# bcsa.graph_a_star(p.initial_state())
+# bcsa.tree_a_star(p.initial_state())
+bcsa.tree_greedy_best_first_search(p.initial_state())
+print('-----------------------------------------------------------')
+bcsa.graph_greedy_best_first_search(p.initial_state())
+
 # csa.graph_depth_first_search(p.initial_state())               #ok
 # csa.tree_depth_first_search(p.initial_state())                #ok...
 # csa.graph_breadth_first_search(p.initial_state())             #ok
@@ -146,5 +152,5 @@ bcsa = BeyondClassicSearchAlgorithm(p)
 # csa.tree_uniform_cost_search(p.initial_state())               #meh
 # csa.graph_depth_limited_search(p.initial_state(), 3)          #ok
 # csa.tree_depth_limited_search(p.initial_state(), 5)           #ok
-csa.graph_iterative_deepening_search(p.initial_state(), 3)    #ok
-csa.tree_iterative_deepening_search(p.initial_state(), 2)     #ok
+# csa.graph_iterative_deepening_search(p.initial_state(), 3)    #ok
+# csa.tree_iterative_deepening_search(p.initial_state(), 2)     #ok
