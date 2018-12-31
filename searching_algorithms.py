@@ -255,3 +255,35 @@ class ClassicSearchAlgorithm:
 
         print("No result found in depth " + str(depth))
         return None
+
+    def tree_depth_limited_search(self, start_state, depth):
+        path = []
+        current_depth = 0
+        nodes_to_expand = [(start_state, 0)]
+        number_of_expanded_nodes = 0
+
+        while nodes_to_expand and current_depth <= depth:
+            if not nodes_to_expand:
+                print("No result found!")
+                return None
+            current_state = nodes_to_expand.pop()
+            path.append(current_state)
+            number_of_expanded_nodes = number_of_expanded_nodes + 1
+            if self.problem.isGoalTest(current_state):
+                print("Algorithm: Tree Depth Limited Search")
+                print("Number Of Expanded Nodes: " + str(number_of_expanded_nodes))
+                print("Depth: " + str(current_depth))
+                print("Memory: " + str(self.memory))
+                print("Last State: " + str(current_state))
+                print("Solution found in Depth " + str(current_depth))
+                self.tree_print_path(path)
+                return current_state
+            states = self.problem.results(self.problem.actions(current_state[0]), current_state[0])
+            current_depth = current_depth + 1
+            for state in states:
+                nodes_to_expand.append(state)
+                self.parent[state] = current_state
+                self.memory = self.memory + 1
+
+        print("No result found in depth " + str(depth))
+        return None
