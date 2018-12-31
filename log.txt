@@ -1,0 +1,115 @@
+-----------------------------------------------------------
+             UNINFORMED SEARCHING ALGORITHMS
+-----------------------------------------------------------
+No result found in depth 4
+No result found in depth 5
+No result found in depth 6
+No result found in depth 7
+No result found in depth 8
+No result found in depth 9
+No result found in depth 10
+Algorithm: Graph Depth Limited Search
+Number Of Visited Nodes: 16
+Number Of Expanded Nodes: 12
+Depth: 11
+Memory: 6
+Last State: Bucharest
+Solution found in Depth 11
+The Best Route: Arad -> Zerind -> Oradea -> Sibiu -> RimnicuVilcea -> Craiova -> Pitesti -> Bucharest
+-----------------------------------------------------------
+Algorithm: Graph Depth First Search
+Number of Visited Nodes: 16
+Number of Expanded Nodes: 11
+Maximum Memory: 6
+Total Cost: 7
+The Best Route: Arad -> Zerind -> Oradea -> Sibiu -> RimnicuVilcea -> Craiova -> Pitesti -> Bucharest
+-----------------------------------------------------------
+Algorithm: Graph BFS
+Number Of Visited Nodes: 14
+Number Of Expanded Nodes: 11
+Memory: 6
+Last State: Bucharest
+Total Cost: 3
+The Best Route: Arad -> Sibiu -> Fagaras -> Bucharest
+-----------------------------------------------------------
+Algorithm: Graph Uniform Cost Search
+Number Of Visited Nodes: 17
+Number Of Expanded Nodes: 14
+Cost: 418
+Memory: 6
+Last State: ('Bucharest', 418)
+The Best Route: Arad -> Sibiu -> RimnicuVilcea -> Pitesti -> Bucharest
+-----------------------------------------------------------
+No result found in depth 3
+-----------------------------------------------------------
+Algorithm: Tree BFS
+Number Of Expanded Nodes: 18
+Memory: 27
+Last State: Bucharest
+Total Cost: 17
+The Best Route: Arad -> Timisoara -> Sibiu -> Zerind -> Lugoj -> Arad -> Fagaras -> RimnicuVilcea -> Arad -> Oradea -> Arad -> Oradea -> Mehadia -> Timisoara -> Timisoara -> Sibiu -> Zerind -> Bucharest
+***NOTE: the printed route is the explored path, not the main route
+-----------------------------------------------------------
+Algorithm: Tree DFS
+Number Of Expanded Nodes: 54
+Memory: 78
+Last State: Bucharest
+Total Cost: 53
+The Best Route: Arad -> Zerind -> Arad -> Timisoara -> Lugoj -> Mehadia -> Lugoj -> Mehadia -> Dobreta -> Mehadia -> Dobreta -> Craiova -> Dobreta -> Craiova -> RimnicuVilcea -> Sibiu -> RimnicuVilcea -> Sibiu -> Arad -> Sibiu -> Oradea -> Zerind -> Arad -> Timisoara -> Arad -> Zerind -> Oradea -> Sibiu -> Arad -> Timisoara -> Arad -> Sibiu -> Arad -> Sibiu -> Oradea -> Zerind -> Arad -> Timisoara -> Lugoj -> Timisoara -> Lugoj -> Mehadia -> Lugoj -> Mehadia -> Lugoj -> Mehadia -> Lugoj -> Mehadia -> Lugoj -> Mehadia -> Dobreta -> Craiova -> Pitesti -> Bucharest
+-----------------------------------------------------------
+Algorithm: Tree Uniform Cost Search
+Number Of Expanded Nodes: 13
+Cost: 418
+Memory: 78
+Last State: ('Bucharest', 418)
+The Best Route: Arad -> Zerind -> Timisoara -> Sibiu -> Oradea -> RimnicuVilcea -> Lugoj -> Fagaras -> Mehadia -> Pitesti -> Craiova -> Dobreta -> Bucharest
+***NOTE: the printed route is the explored path, not the main route
+-----------------------------------------------------------
+Algorithm: Tree Depth Limited Search
+Number Of Expanded Nodes: 6
+Depth: 6
+Memory: 78
+Last State: Bucharest
+Solution found in Depth 6
+The Best Route: Arad -> Zerind -> Oradea -> Sibiu -> Fagaras -> Bucharest
+-----------------------------------------------------------
+Algorithm: Tree Depth Limited Search
+Number Of Expanded Nodes: 6
+Depth: 5
+Memory: 78
+Last State: Bucharest
+Solution found in Depth 5
+The Best Route: Arad -> Zerind -> Oradea -> Sibiu -> Fagaras -> Bucharest
+-----------------------------------------------------------
+              INFORMED SEARCHING ALGORITHMS
+-----------------------------------------------------------
+Algorithm: Graph A* Search
+Number Of Visited Nodes: 16
+Number Of Expanded Nodes: 12
+Cost: 418
+Memory: 6
+Last State: ('Bucharest', 418)
+The Best Route: Arad -> Sibiu -> RimnicuVilcea -> Pitesti -> Bucharest
+-----------------------------------------------------------
+Algorithm: Graph GBFS
+Number Of Visited Nodes: 8
+Number Of Expanded Nodes: 4
+Cost: 450
+Memory: 6
+Last State: ('Bucharest', 450)
+The Best Route: Arad -> Sibiu -> Fagaras -> Bucharest
+-----------------------------------------------------------
+Algorithm: Tree GBFS
+Number Of Expanded Nodes: 4
+Cost: 450
+Memory: 6
+Last State: ('Bucharest', 450)
+The Best Route: Arad -> Sibiu -> Fagaras -> Bucharest
+-----------------------------------------------------------
+Algorithm: Tree A* Search
+Number Of Expanded Nodes: 19
+Cost: 418
+Memory: 29
+Last State: ('Bucharest', 418)
+The Best Route: Arad -> Timisoara -> Sibiu -> Zerind -> Lugoj -> Arad -> Fagaras -> RimnicuVilcea -> Arad -> Oradea -> Arad -> Oradea -> Mehadia -> Timisoara -> Timisoara -> Sibiu -> Zerind -> Pitesti -> Bucharest
+-----------------------------------------------------------
