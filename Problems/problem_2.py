@@ -1,4 +1,6 @@
 import random
+from collections import defaultdict
+
 import graph as g
 from copy import deepcopy
 from SearchAlgorithms.LocalSearchingAlgorithms.hill_climbing import *
@@ -26,9 +28,11 @@ class Problem:
     def __init__(self, color_size):
         self.cgraph = g.Graph()
         self.color_size = color_size
+        # self.initial_state()
 
     def initial_state(self):
         # self.cgraph = g.Graph()
+        self.cgraph.graph.clear()
         self.cgraph.add_edge_colored(1, 2)
         self.cgraph.add_edge_colored(1, 3)
         self.cgraph.add_edge_colored(1, 4)
@@ -54,7 +58,7 @@ class Problem:
         return self.new_state()
 
     def new_state(self):
-        node_colors = {}
+        node_colors = defaultdict(list)
         for g in self.cgraph.graph:
             node_colors[g] = random.randrange(self.color_size)
         return node_colors
@@ -96,24 +100,19 @@ p = Problem(3)
 print('-----------------------------------------------------------------------')
 print('                           HILL CLIMBING')
 print('-----------------------------------------------------------------------')
-# hc1 = HillClimbing(p, 'first_choice')
-# print(p.cgraph.graph)
+hc1 = HillClimbing(p, 'first_choice')
 print('-----------------------------------------------------------------------')
-# hc2 = HillClimbing(p, 'stochastic')
-# print(p.cgraph.graph)
+hc2 = HillClimbing(p, 'stochastic')
 print('-----------------------------------------------------------------------')
-# hc3 = HillClimbing(p, 'random_restart')
-# print(p.cgraph.graph)
+hc3 = HillClimbing(p, 'random_restart')
 print('-----------------------------------------------------------------------')
-# hc4 = HillClimbing(p, 'greedy')
-# print(p.cgraph.graph)
+hc4 = HillClimbing(p, 'greedy')
 print('-----------------------------------------------------------------------')
 print('                        simulated annealing'.upper())
 print('-----------------------------------------------------------------------')
-# sa = SimulatedAnnealing(p)
+sa = SimulatedAnnealing(p)
 print('-----------------------------------------------------------------------')
 print('                              genetic'.upper())
 print('-----------------------------------------------------------------------')
-# ge = Genetic(p, 100)
+ge = Genetic(p, 50, 10, 2, 0.01)
 print('-----------------------------------------------------------------------')
-# print(p.cgraph.graph)
