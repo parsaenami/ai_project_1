@@ -7,6 +7,10 @@ class Genetic:
     def __init__(self, problem, generation_size, population_size, tournament_size, mutation_size):
         self.chromosomes = []
         self.new_chromosome = []
+        self.best_evaluation = []
+        self.worst_evaluation = []
+        self.average_evaluation = []
+
         self.fitness_map = {}
 
         self.problem = problem
@@ -14,7 +18,8 @@ class Genetic:
         self.population_size = population_size
         self.tournament_size = tournament_size
         self.mutation_size = mutation_size
-        # self.function
+
+        self.do_genetic()
 
     def make_population(self):
         for p in range(self.population_size):
@@ -81,6 +86,11 @@ class Genetic:
                     self.chromosomes[r1][r2] = r3
                     break
 
+    def evaluation(self):
+        self.best_evaluation.append(max(self.fitness_map.values()))
+        self.worst_evaluation.append(min(self.fitness_map.values()))
+        self.average_evaluation.append(sum(self.fitness_map.values()) / self.fitness_map.__len__())
+
     def do_genetic(self):
         for i in range(self.generation_size):
             if i != 0:
@@ -90,3 +100,13 @@ class Genetic:
             self.make_population()
             self.new_generation(self.tournament())
             self.mutation()
+            self.evaluation()
+
+        print(f'Number of generations: {self.generation_size}')
+        print(f'Population size: {self.population_size}')
+        print(f'Tournament size: {self.tournament_size}')
+        print(f'Mutation size: {self.mutation_size}')
+        print('......')
+        print(f'Best evaluation: {max(self.best_evaluation)}')
+        print(f'Worst evaluation: {min(self.worst_evaluation)}')
+        print(f'Average evaluation: {sum(self.average_evaluation) / self.average_evaluation.__len__()}')
