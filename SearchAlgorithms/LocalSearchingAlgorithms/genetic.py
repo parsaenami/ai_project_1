@@ -1,4 +1,5 @@
 import random
+import collections
 
 
 class Genetic:
@@ -55,3 +56,15 @@ class Genetic:
         self.chromosomes = self.new_chromosome.copy()
         self.new_chromosome.clear()
 
+    def crossover(self, chromosome1, chromosome2):
+        gen_list = list(chromosome1.keys()) + list(chromosome2.keys())
+        color_list = list(chromosome1.values()) + list(chromosome2.values())
+        temp_chromosome = {}
+
+        for c in range(len(gen_list)):
+            if c % 2 == 0:
+                temp_chromosome[gen_list[c]] = color_list[c]
+
+        new_chromosome = dict(collections.OrderedDict(sorted(temp_chromosome.items())))
+
+        return new_chromosome
