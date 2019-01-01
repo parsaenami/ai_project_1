@@ -1,3 +1,4 @@
+import random
 
 
 class Genetic:
@@ -29,4 +30,17 @@ class Genetic:
 
         self.fitness_map[chromosome] = ((all_edge - same_color_edge) // 2) / (all_edge // 2)
 
-    # def tournament(self, k):
+    def tournament(self, k):
+        randoms = []
+        parents = []
+        parent_size = self.population_size // k
+        count = 0
+
+        while count != parent_size:
+            r = random.randrange(parent_size)
+            if r not in randoms:
+                parents.append(self.chromosomes[r])
+                randoms.append(r)
+                count += 1
+
+        return parents
