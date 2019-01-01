@@ -3,12 +3,13 @@ import random
 
 class Genetic:
 
-    def __init__(self, problem, population_size, tournament_size, mutation_size):
+    def __init__(self, problem, generation_size, population_size, tournament_size, mutation_size):
         self.chromosomes = []
         self.new_chromosome = []
         self.fitness_map = {}
 
         self.problem = problem
+        self.generation_size = generation_size
         self.population_size = population_size
         self.tournament_size = tournament_size
         self.mutation_size = mutation_size
@@ -44,3 +45,13 @@ class Genetic:
                 count += 1
 
         return parents
+
+    def new_generation(self):
+        for i in range(self.population_size):
+            r1 = random.randrange(self.population_size)
+            r2 = random.randrange(self.population_size)
+            self.new_chromosome.append(self.crossover(self.chromosomes[r1], self.chromosomes[r2]))
+
+        self.chromosomes = self.new_chromosome.copy()
+        self.new_chromosome.clear()
+
