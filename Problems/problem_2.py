@@ -4,6 +4,8 @@ from copy import deepcopy
 from SearchAlgorithms.LocalSearchingAlgorithms.hill_climbing import *
 from SearchAlgorithms.LocalSearchingAlgorithms.simulated_annealing import *
 from SearchAlgorithms.LocalSearchingAlgorithms.genetic import *
+
+
 # graph = {
 #     1: [2, 3, 4, 5, 6],
 #     2: [1, 7, 8],
@@ -64,7 +66,7 @@ class Problem:
                 num_of_neighbors[neighbor[0]] = num_of_neighbors[neighbor[0]] + 1
                 num_of_neighbors[neighbor[1]] = num_of_neighbors[neighbor[1]] + 1
         worst_node = max(num_of_neighbors, key=num_of_neighbors.get)
-        for i in range(1, 3 + 1):
+        for i in range(1, 3 + 1):  # colors
             temp_state = deepcopy(current_state)
             if temp_state[worst_node] != i:
                 temp_state[worst_node] = i
@@ -86,23 +88,28 @@ class Problem:
                 score = score + 1
         return score
 
-# p = Problem()
-# print('-----------------------------------------------------------------------')
-# print('                           HILL CLIMBING')
-# print('-----------------------------------------------------------------------')
+p = Problem()
+print('-----------------------------------------------------------------------')
+print('                           HILL CLIMBING')
+print('-----------------------------------------------------------------------')
 # hc1 = HillClimbing(p, 'first_choice')
-# print('-----------------------------------------------------------------------')
+# print(p.cgraph.graph)
+print('-----------------------------------------------------------------------')
 # hc2 = HillClimbing(p, 'stochastic')
-# print('-----------------------------------------------------------------------')
+# print(p.cgraph.graph)
+print('-----------------------------------------------------------------------')
 # hc3 = HillClimbing(p, 'random_restart')
-# print('-----------------------------------------------------------------------')
+# print(p.cgraph.graph)
+print('-----------------------------------------------------------------------')
 # hc4 = HillClimbing(p, 'greedy')
-# print('-----------------------------------------------------------------------')
-# print('                        simulated annealing'.upper())
-# print('-----------------------------------------------------------------------')
-# sa = SimulatedAnnealing(p)
-# print('-----------------------------------------------------------------------')
-# print('                              genetic'.upper())
-# print('-----------------------------------------------------------------------')
+# print(p.cgraph.graph)
+print('-----------------------------------------------------------------------')
+print('                        simulated annealing'.upper())
+print('-----------------------------------------------------------------------')
+sa = SimulatedAnnealing(p)
+print('-----------------------------------------------------------------------')
+print('                              genetic'.upper())
+print('-----------------------------------------------------------------------')
 # ge = Genetic(p, 100)
-# print('-----------------------------------------------------------------------')
+print('-----------------------------------------------------------------------')
+# print(p.cgraph.graph)

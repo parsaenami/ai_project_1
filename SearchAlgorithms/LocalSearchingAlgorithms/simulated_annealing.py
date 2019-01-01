@@ -23,7 +23,7 @@ class SimulatedAnnealing(object):
             if efficiency >= 0:
                 current_state = chosen_neighbor
             else:
-                if math.exp(efficiency/current_temperature) > random.random():
+                if math.exp(efficiency / current_temperature) > random.random():
                     current_state = chosen_neighbor
             # 1
             current_temperature = current_temperature - 1
@@ -35,4 +35,17 @@ class SimulatedAnnealing(object):
         print("Last state: " + str(current_state))
         print("Number of visited nodes: " + str(number_of_visited_nodes))
         print("Number of expanded nodes: " + str(number_of_expanded_nodes))
+        temp = self.cost(current_state)
+        print(f'Validation: {temp[1] - temp[0]} from {temp[1]} pair of nodes have different colors')
 
+    def cost(self, current_state):
+        same_color_edge = 0
+        all_edge = 0
+        graph = self.problem.cgraph.graph
+        for g in graph:
+            for n in graph[g]:
+                all_edge += 1
+                if current_state[n] == current_state[g]:
+                    same_color_edge += 1
+
+        return (same_color_edge // 2, all_edge // 2)
