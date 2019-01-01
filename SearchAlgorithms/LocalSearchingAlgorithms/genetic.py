@@ -68,3 +68,16 @@ class Genetic:
         new_chromosome = dict(collections.OrderedDict(sorted(temp_chromosome.items())))
 
         return new_chromosome
+
+    def mutation(self):
+        muted_genomes = self.population_size * self.problem.cgraph.graph.__len__() * self.mutation_size
+        for g in range(muted_genomes):
+            r1 = random.randrange(self.chromosomes.__len__())
+            r2 = random.randrange(self.chromosomes[r1])
+
+            while True:
+                r3 = random.randrange(self.chromosomes[r1][r2])
+                if r3 != self.chromosomes[r1][r2]:
+                    self.chromosomes[r1][r2] = r3
+                    break
+
