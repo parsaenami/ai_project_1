@@ -42,4 +42,27 @@ class HillClimbing(object):
         print("Number of visited nodes: " + str(number_of_visited_nodes))
         print("Number of expanded nodes: " + str(number_of_expanded_nodes))
 
+    def find_neighbor_in_greedy_way(self, current_state, neighbors):
+        best_neighbor = current_state
+        best_heuristic = self.problem.heuristic(current_state)
+        for neighbor in neighbors:
+            heuristic = self.problem.heuristic(neighbor)
+            if heuristic < best_heuristic:
+                best_heuristic = heuristic
+                best_neighbor = neighbor
+        return best_neighbor
 
+    def find_neighbor_in_stochastic_way(self, current_state, neighbors):
+        valuable_neighbors = []
+        for neighbor in neighbors:
+            if self.problem.heuristic(neighbor) < self.problem.heuristic(current_state):
+                valuable_neighbors.append(neighbor)
+        return random.choice(valuable_neighbors) if len(valuable_neighbors) > 0 else current_state
+
+    def find_neighbor_in_first_choice_way(self, current_state, neighbors):
+        best_heuristic = self.problem.heuristic(current_state)
+        for neighbor in neighbors:
+            heuristic = self.problem.heuristic(neighbor)
+            if heuristic < best_heuristic:
+                return neighbor
+        return current_state
