@@ -39,7 +39,7 @@ class SimulatedAnnealing(object):
         print("Number of visited nodes: " + str(number_of_visited_nodes))
         print("Number of expanded nodes: " + str(number_of_expanded_nodes))
         temp = self.cost(current_state)
-        print(f'Validation: {temp[1] - temp[0]} from {temp[1]} pair of nodes have different colors')
+        print(f'Evaluation: {temp[1] - temp[0]} from {temp[1]} pair of nodes have different colors')
 
     def cost(self, current_state):
         same_color_edge = 0

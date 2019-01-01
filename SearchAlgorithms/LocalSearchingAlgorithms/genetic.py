@@ -16,9 +16,12 @@ class Genetic:
         self.mutation_size = mutation_size
         # self.function
 
-    def make_population(self, population_size):
-        for p in range(population_size):
+    def make_population(self):
+        for p in range(self.population_size):
             self.chromosomes.append(self.problem.new_state())
+
+        for c in self.chromosomes:
+            self.fitness(c)
 
     def fitness(self, chromosome):
         graph = self.problem.cgraph.graph
@@ -32,10 +35,10 @@ class Genetic:
 
         self.fitness_map[chromosome] = ((all_edge - same_color_edge) // 2) / (all_edge // 2)
 
-    def tournament(self, k):
+    def tournament(self):
         randoms = []
         parents = []
-        parent_size = self.population_size // k
+        parent_size = self.population_size // self.tournament_size
         count = 0
 
         while count != parent_size:
@@ -47,14 +50,11 @@ class Genetic:
 
         return parents
 
-    def new_generation(self):
+    def new_generation(self, parents):
         for i in range(self.population_size):
             r1 = random.randrange(self.population_size)
             r2 = random.randrange(self.population_size)
-            self.new_chromosome.append(self.crossover(self.chromosomes[r1], self.chromosomes[r2]))
-
-        self.chromosomes = self.new_chromosome.copy()
-        self.new_chromosome.clear()
+            self.new_chromosome.append(self.crossover(parents[r1], parents[r2]))
 
     def crossover(self, chromosome1, chromosome2):
         gen_list = list(chromosome1.keys()) + list(chromosome2.keys())
@@ -81,3 +81,12 @@ class Genetic:
                     self.chromosomes[r1][r2] = r3
                     break
 
+    def do_genetic(self):
+        for i in range(self.generation_size):
+            if i != 0:
+                self.chromosomes = self.new_chromosome.copy()
+                self.new_chromosome.clear()
+
+            self.make_population()
+            self.new_generation(self.tournament())
+            self.mutation()
