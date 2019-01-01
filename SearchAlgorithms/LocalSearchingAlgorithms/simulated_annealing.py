@@ -32,6 +32,7 @@ class SimulatedAnnealing(object):
             # 3
             # current_temperature = math.sqrt(current_temperature)
 
+        print("Number of colors: " + str(self.problem.color_size))
         print("Last state: " + str(current_state))
         print("Number of visited nodes: " + str(number_of_visited_nodes))
         print("Number of expanded nodes: " + str(number_of_expanded_nodes))
