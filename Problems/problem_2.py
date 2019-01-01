@@ -23,8 +23,9 @@ from SearchAlgorithms.LocalSearchingAlgorithms.genetic import *
 
 class Problem:
 
-    def __init__(self):
+    def __init__(self, color_size):
         self.cgraph = g.Graph()
+        self.color_size = color_size
 
     def initial_state(self):
         # self.cgraph = g.Graph()
@@ -50,9 +51,12 @@ class Problem:
         self.cgraph.add_edge_colored(9, 11)
 
         # self.states = {}
+        return self.new_state()
+
+    def new_state(self):
         node_colors = {}
         for g in self.cgraph.graph:
-            node_colors[g] = 1
+            node_colors[g] = random.randrange(self.color_size)
         return node_colors
 
     def successor(self, current_state):
@@ -66,7 +70,7 @@ class Problem:
                 num_of_neighbors[neighbor[0]] = num_of_neighbors[neighbor[0]] + 1
                 num_of_neighbors[neighbor[1]] = num_of_neighbors[neighbor[1]] + 1
         worst_node = max(num_of_neighbors, key=num_of_neighbors.get)
-        for i in range(1, 3 + 1):  # colors
+        for i in range(self.color_size):  # colors
             temp_state = deepcopy(current_state)
             if temp_state[worst_node] != i:
                 temp_state[worst_node] = i
@@ -88,11 +92,11 @@ class Problem:
                 score = score + 1
         return score
 
-p = Problem()
+p = Problem(3)
 print('-----------------------------------------------------------------------')
 print('                           HILL CLIMBING')
 print('-----------------------------------------------------------------------')
-# hc1 = HillClimbing(p, 'first_choice')
+hc1 = HillClimbing(p, 'first_choice')
 # print(p.cgraph.graph)
 print('-----------------------------------------------------------------------')
 # hc2 = HillClimbing(p, 'stochastic')
@@ -106,7 +110,7 @@ print('-----------------------------------------------------------------------')
 print('-----------------------------------------------------------------------')
 print('                        simulated annealing'.upper())
 print('-----------------------------------------------------------------------')
-sa = SimulatedAnnealing(p)
+# sa = SimulatedAnnealing(p)
 print('-----------------------------------------------------------------------')
 print('                              genetic'.upper())
 print('-----------------------------------------------------------------------')

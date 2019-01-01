@@ -14,3 +14,4 @@ class Genetic:
 
     # def make_population(self, population_size):
     #     for p in range(population_size):
+
