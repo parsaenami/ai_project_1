@@ -35,3 +35,4 @@ class SimulatedAnnealing(object):
         print("Last state: " + str(current_state))
         print("Number of visited nodes: " + str(number_of_visited_nodes))
         print("Number of expanded nodes: " + str(number_of_expanded_nodes))
+
