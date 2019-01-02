@@ -1,5 +1,8 @@
 import random
 import collections
+import matplotlib.pyplot as plt1
+import matplotlib.pyplot as plt2
+import matplotlib.pyplot as plt3
 
 
 class Genetic:
@@ -91,6 +94,35 @@ class Genetic:
         self.worst_evaluation.append(min(self.fitness_map))
         self.average_evaluation.append(sum(self.fitness_map) / self.fitness_map.__len__())
 
+    def ploting(self):
+        plt1.plot(self.best_evaluation, label='Evaluation', color='green', marker='o', markersize=2)
+        plt1.legend()
+        plt1.title('Best Evaluations In Each Generation')
+        plt1.xlabel('Generation')
+        plt1.ylabel('Evaluation')
+        plt1.minorticks_on()
+        plt1.grid()
+        plt1.show()
+
+        plt2.plot(self.worst_evaluation, label='Evaluation', color='red', marker='o', markersize=2)
+        plt2.legend()
+        plt2.title('Worst Evaluations In Each Generation')
+        plt2.xlabel('Generation')
+        plt2.ylabel('Evaluation')
+        plt2.minorticks_on()
+        plt2.grid()
+        plt2.show()
+
+        plt3.plot(self.average_evaluation, label='Evaluation', color='blue', marker='o', markersize=2)
+        plt3.legend()
+        plt3.title('Average Evaluations In Each Generation')
+        plt3.xlabel('Generation')
+        plt3.ylabel('Evaluation')
+        plt3.minorticks_on()
+        plt3.grid()
+        plt3.show()
+
+
     def do_genetic(self):
         for i in range(self.generation_size):
             if i != 0:
@@ -112,3 +144,4 @@ class Genetic:
         print(f'Best evaluation: {max(self.best_evaluation)}')
         print(f'Worst evaluation: {min(self.worst_evaluation)}')
         print(f'Average evaluation: {sum(self.average_evaluation) / self.average_evaluation.__len__()}')
+        self.ploting()
