@@ -122,7 +122,6 @@ class Genetic:
         plt3.grid()
         plt3.show()
 
-
     def do_genetic(self):
         for i in range(self.generation_size):
             if i != 0:
