@@ -15,6 +15,7 @@ class Genetic:
         self.worst_evaluation = []
         self.average_evaluation = []
         self.fitness_map = []
+        self.best_answer = 0
 
         self.problem = problem
         self.generation_size = generation_size
@@ -171,7 +172,7 @@ class Genetic:
     def do_genetic(self):
         for i in range(self.generation_size):
             # if i % 1000 == 0:
-            #     print(f'*******************************************generation {i}')
+            # print(f'*******************************************generation {i}')
             if i != 0:
                 self.chromosomes = self.new_chromosome.copy()
                 self.new_chromosome.clear()
@@ -181,6 +182,7 @@ class Genetic:
             self.new_generation(self.tournament())
             self.mutation()
             self.evaluation()
+            self.fitness_map.clear()
 
         print(f'Number of colors: {self.problem.color_size}')
         print(f'Number of generations: {self.generation_size}')
@@ -191,4 +193,6 @@ class Genetic:
         print(f'Best evaluation: {max(self.best_evaluation)}')
         print(f'Worst evaluation: {min(self.worst_evaluation)}')
         print(f'Average evaluation: {sum(self.average_evaluation) / self.average_evaluation.__len__()}')
+        print(f'Best answer was in generation number {self.best_evaluation.index(max(self.best_evaluation))}')
+        print(f'Best average was in generation number {self.average_evaluation.index(max(self.average_evaluation))}')
         self.ploting()
