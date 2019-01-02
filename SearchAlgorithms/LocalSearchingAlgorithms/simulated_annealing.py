@@ -21,8 +21,10 @@ class SimulatedAnnealing(object):
             chosen_neighbor = random.choice(neighbors)
             efficiency = self.problem.heuristic(chosen_neighbor) - self.problem.heuristic(current_state)
             if efficiency >= 0:
+                # print('///////////////////////////////////////////////////////')
                 current_state = chosen_neighbor
             else:
+                # print('*******************************************************')
                 if math.exp(efficiency / current_temperature) > random.random():
                     current_state = chosen_neighbor
             # 1

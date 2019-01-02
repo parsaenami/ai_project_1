@@ -101,7 +101,6 @@ class Genetic:
         #
         # return parents
 
-
     def new_generation(self, parents):
         for i in range(self.population_size):
             r1 = random.randrange(parents.__len__())
@@ -171,8 +170,8 @@ class Genetic:
 
     def do_genetic(self):
         for i in range(self.generation_size):
-            if i % 1000 == 0:
-                print(f'*******************************************generation {i}')
+            # if i % 1000 == 0:
+            #     print(f'*******************************************generation {i}')
             if i != 0:
                 self.chromosomes = self.new_chromosome.copy()
                 self.new_chromosome.clear()

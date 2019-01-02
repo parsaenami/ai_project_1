@@ -49,7 +49,6 @@ class HillClimbing(object):
         temp = self.cost(current_state)
         print(f'Evaluation: {temp[1] - temp[0]} from {temp[1]} pair of nodes have different colors')
 
-
     def find_neighbor_in_greedy_way(self, current_state, neighbors):
         best_neighbor = current_state
         best_heuristic = self.problem.heuristic(current_state)
