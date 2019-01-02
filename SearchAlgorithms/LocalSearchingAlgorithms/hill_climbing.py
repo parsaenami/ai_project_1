@@ -26,11 +26,15 @@ class HillClimbing(object):
                 current_state = self.find_neighbor_in_stochastic_way(current_state, neighbors)
                 best_state_found = True if last_state == current_state else False
             elif self.type is 'random_restart':
-                current_state = self.find_neighbor_in_greedy_way(current_state, neighbors)
-                if last_state == current_state:
-                    if attempts < number_of_attempts:
-                        best_state_found = True
-                    attempts = attempts + 1
+                res = self.find_neighbor_in_random_restart_way(current_state, neighbors)
+                current_state = res[0]
+                number_of_visited_nodes += res[1]
+                number_of_expanded_nodes += res[2]
+                best_state_found = True if last_state == current_state else False
+                # if last_state == current_state:
+                #     if attempts < number_of_attempts:
+                #         best_state_found = True
+                #     attempts = attempts + 1
             elif self.type is 'first_choice':
                 current_state = self.find_neighbor_in_first_choice_way(current_state, neighbors)
                 best_state_found = True if last_state == current_state else False
@@ -70,6 +74,44 @@ class HillClimbing(object):
             if heuristic < best_heuristic:
                 return neighbor
         return current_state
+
+    def find_neighbor_in_random_restart_way(self, current_state, neighbors):
+        best_answer = current_state
+        best_state = False
+        init_best_state = False
+        init_best_state2 = False
+        init_last_state = current_state
+        answers = []
+        visited, expanded = 0, 0
+        # neighbors = self.problem.successor(current_state)
+
+        while not init_best_state:
+            state = self.find_neighbor_in_greedy_way(current_state, neighbors)
+            init_best_state = True if state == init_last_state else False
+            init_last_state = state
+        answers.append(init_last_state)
+
+        for i in range(300):
+            current_state = self.problem.initial_state()
+            expanded += 1
+            neighbors = self.problem.successor(current_state)
+            visited += len(neighbors)
+            while not init_best_state2:
+                state = self.find_neighbor_in_greedy_way(current_state, neighbors)
+                init_best_state2 = True if state == init_last_state else False
+                init_last_state = state
+            answers.append(init_last_state)
+            # print('************' + str(i))
+            # print(answers.__len__())
+
+        best_heuristic = self.problem.heuristic(current_state)
+        for answer in answers:
+            heuristic = self.problem.heuristic(answer)
+            if heuristic < best_heuristic:
+                best_heuristic = heuristic
+                best_answer = answer
+
+        return (best_answer, visited, expanded)
 
     def cost(self, current_state):
         same_color_edge = 0

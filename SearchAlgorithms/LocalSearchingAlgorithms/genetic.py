@@ -1,5 +1,6 @@
 import random
 import collections
+import operator
 import matplotlib.pyplot as plt1
 import matplotlib.pyplot as plt2
 import matplotlib.pyplot as plt3
@@ -40,20 +41,66 @@ class Genetic:
 
         self.fitness_map.append(((all_edge - same_color_edge) // 2) / (all_edge // 2))
 
+    def single_fitness(self, chromosome):
+        graph = self.problem.cgraph.graph
+        all_edge = 0
+        same_color_edge = 0
+        for g in graph:
+            for n in graph[g]:
+                all_edge += 1
+                if chromosome[n] == chromosome[g]:
+                    same_color_edge += 1
+
+        return ((all_edge - same_color_edge) // 2) / (all_edge // 2)
+
     def tournament(self):
-        randoms = []
-        parents = []
+        tournament_parents = []
+        temp_tournament_parents = []
+        chosen_parents = []
+        best_chosen = []
+        best_chosen_fitness = []
         parent_size = self.population_size // self.tournament_size
         count = 0
+        t_count = 0
 
+        randoms = [i for i in range(self.population_size)]
         while count != parent_size:
-            r = random.randrange(parent_size)
-            if r not in randoms:
-                parents.append(self.chromosomes[r])
-                randoms.append(r)
-                count += 1
+            while t_count != self.tournament_size:
+                rc = random.choice(randoms)
+                state = self.chromosomes[rc]
+                # if state not in tournament_parents:
+                temp_tournament_parents.append(state)
+                randoms.remove(rc)
+                t_count += 1
 
-        return parents
+            for y in temp_tournament_parents:
+                best_chosen.append(y)
+                best_chosen_fitness.append(self.single_fitness(y))
+
+            chosen_parents.append(best_chosen[best_chosen_fitness.index(max(best_chosen_fitness))])
+            tournament_parents += temp_tournament_parents
+            temp_tournament_parents.clear()
+            best_chosen.clear()
+            best_chosen_fitness.clear()
+            count += 1
+            t_count = 0
+
+        return chosen_parents
+
+        # randoms = []
+        # parents = []
+        # parent_size = self.population_size // self.tournament_size
+        # count = 0
+        #
+        # while count != parent_size:
+        #     r = random.randrange(parent_size)
+        #     if r not in randoms:
+        #         parents.append(self.chromosomes[r])
+        #         randoms.append(r)
+        #         count += 1
+        #
+        # return parents
+
 
     def new_generation(self, parents):
         for i in range(self.population_size):
