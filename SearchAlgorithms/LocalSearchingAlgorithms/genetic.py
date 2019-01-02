@@ -142,27 +142,27 @@ class Genetic:
         self.average_evaluation.append(sum(self.fitness_map) / self.fitness_map.__len__())
 
     def ploting(self):
-        plt1.plot(self.best_evaluation, label='Evaluation', color='green', marker='o', markersize=2)
-        plt1.legend()
-        plt1.title('Best Evaluations In Each Generation')
-        plt1.xlabel('Generation')
-        plt1.ylabel('Evaluation')
-        plt1.minorticks_on()
-        plt1.grid()
-        plt1.show()
-
-        plt2.plot(self.worst_evaluation, label='Evaluation', color='red', marker='o', markersize=2)
-        plt2.legend()
-        plt2.title('Worst Evaluations In Each Generation')
-        plt2.xlabel('Generation')
-        plt2.ylabel('Evaluation')
-        plt2.minorticks_on()
-        plt2.grid()
-        plt2.show()
-
-        plt3.plot(self.average_evaluation, label='Evaluation', color='blue', marker='o', markersize=2)
+        plt3.plot(self.best_evaluation, label='Best', color='green')
         plt3.legend()
-        plt3.title('Average Evaluations In Each Generation')
+        # plt1.title('Best Evaluations In Each Generation')
+        # plt1.xlabel('Generation')
+        # plt1.ylabel('Evaluation')
+        # plt1.minorticks_on()
+        # plt1.grid()
+        # plt1.show()
+
+        plt3.plot(self.worst_evaluation, label='Worst', color='red')
+        plt3.legend()
+        # plt2.title('Worst Evaluations In Each Generation')
+        # plt2.xlabel('Generation')
+        # plt2.ylabel('Evaluation')
+        # plt2.minorticks_on()
+        # plt2.grid()
+        # plt2.show()
+
+        plt3.plot(self.average_evaluation, label='Average', color='blue')
+        plt3.legend()
+        plt3.title('Evaluations In Each Generation')
         plt3.xlabel('Generation')
         plt3.ylabel('Evaluation')
         plt3.minorticks_on()
@@ -171,6 +171,8 @@ class Genetic:
 
     def do_genetic(self):
         for i in range(self.generation_size):
+            if i % 1000 == 0:
+                print(f'*******************************************generation {i}')
             if i != 0:
                 self.chromosomes = self.new_chromosome.copy()
                 self.new_chromosome.clear()
