@@ -1,0 +1,53 @@
+-----------------------------------------------------------------------
+                           HILL CLIMBING
+-----------------------------------------------------------------------
+Type of hill climbing: first_choice
+Number of colors: 3
+Last state: defaultdict(<class 'list'>, {1: 1, 2: 0, 3: 1, 4: 0, 5: 2, 6: 2, 7: 2, 8: 2, 9: 0, 10: 1, 11: 1})
+Number of visited nodes: 2
+Number of expanded nodes: 1
+Evaluation: 17 from 20 pair of nodes have different colors
+-----------------------------------------------------------------------
+Type of hill climbing: stochastic
+Number of colors: 3
+Last state: defaultdict(<class 'list'>, {1: 1, 2: 2, 3: 0, 4: 0, 5: 0, 6: 2, 7: 1, 8: 1, 9: 1, 10: 2, 11: 0})
+Number of visited nodes: 8
+Number of expanded nodes: 4
+Evaluation: 18 from 20 pair of nodes have different colors
+-----------------------------------------------------------------------
+Type of hill climbing: random_restart
+Number of colors: 3
+Last state: defaultdict(<class 'list'>, {1: 1, 2: 0, 3: 0, 4: 2, 5: 2, 6: 1, 7: 2, 8: 2, 9: 1, 10: 1, 11: 0})
+Number of visited nodes: 8
+Number of expanded nodes: 4
+Evaluation: 19 from 20 pair of nodes have different colors
+-----------------------------------------------------------------------
+Type of hill climbing: greedy
+Number of colors: 3
+Last state: defaultdict(<class 'list'>, {1: 1, 2: 2, 3: 0, 4: 0, 5: 0, 6: 2, 7: 0, 8: 1, 9: 1, 10: 2, 11: 0})
+Number of visited nodes: 10
+Number of expanded nodes: 5
+Evaluation: 19 from 20 pair of nodes have different colors
+-----------------------------------------------------------------------
+                        SIMULATED ANNEALING
+-----------------------------------------------------------------------
+Number of colors: 3
+Initial temperature: 10000
+Current temperature: 1
+Last state: defaultdict(<class 'list'>, {1: 2, 2: 0, 3: 2, 4: 1, 5: 0, 6: 2, 7: 0, 8: 1, 9: 2, 10: 2, 11: 1})
+Number of visited nodes: 19998
+Number of expanded nodes: 9999
+Evaluation: 15 from 20 pair of nodes have different colors
+-----------------------------------------------------------------------
+                              GENETIC
+-----------------------------------------------------------------------
+Number of colors: 3
+Number of generations: 50
+Population size: 10
+Tournament size: 2
+Mutation size: 0.01
+......
+Best evaluation: 0.85
+Worst evaluation: 0.5
+Average evaluation: 0.724786474889272
+-----------------------------------------------------------------------
